@@ -21,7 +21,6 @@ const StyledNav = styled.nav`
 const NavLink = styled(Link)`
   color: #aaa;
   text-decoration: none;
-  padding: 10px 0;
 `;
 const Header = () => {
   return (
