@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-
+const PrimartColor = "#5542f6";
 export const ButtonStyle = css`
   border: 0;
 
@@ -8,16 +8,27 @@ export const ButtonStyle = css`
   cursor: pointer;
   display: inline-flex;
   text-decoration: none;
+  font-weight: bold;
+  font-family: "Poppins", "sans-serif";
   svg {
     height: 20px;
     margin-right: 5px;
   }
   ${(props) =>
     props.primary &&
+    !props.outline &&
     css`
-      background-color: #5145cd;
+      background-color: ${PrimartColor};
       color: white;
-      border: 1px solid #5145cd;
+      border: 1px solid ${PrimartColor};
+    `}
+  ${(props) =>
+    props.primary &&
+    props.outline &&
+    css`
+      background-color: transparent;
+      color: ${PrimartColor};
+      border: 1px solid ${PrimartColor};
     `}
   ${(props) =>
     props.white &&

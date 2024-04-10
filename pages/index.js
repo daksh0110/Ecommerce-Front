@@ -1,14 +1,14 @@
 import Featured from "./components/Featured";
 import Header from "./components/Header";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "./components/lib/dbconfig";
-export default function Home({ product, id }) {
-  console.log(product);
-  console.log(id);
+import NewProduct from "./components/NewProduct";
+export default function Home({ featuredproduct, id, newproduct }) {
   return (
     <div>
       <Header />
-      <Featured product={product} id={id} />
+      <Featured featuredproduct={featuredproduct} id={id} />
+      <NewProduct newproduct={newproduct} />
     </div>
   );
 }
@@ -17,9 +17,19 @@ export async function getServerSideProps() {
   const Featuredid = "CpJlemFbrDa6MFNB1kKH";
   const docRef = doc(db, "Products", Featuredid);
   const docSnap = await getDoc(docRef);
-  const product = docSnap.data();
+  const featuredproduct = docSnap.data();
+
+  const newproduct = [];
+  const querySnapshot = await getDocs(collection(db, "Products"));
+  querySnapshot.forEach((doc) => {
+    newproduct.push({ id: doc.id, ...doc.data() });
+  });
 
   return {
-    props: { product, id: Featuredid },
+    props: {
+      featuredproduct: JSON.parse(JSON.stringify(featuredproduct)),
+      id: Featuredid,
+      newproduct: JSON.parse(JSON.stringify(newproduct)),
+    },
   };
 }
