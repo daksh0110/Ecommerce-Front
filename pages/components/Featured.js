@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useContext } from "react";
 import { Center } from "./Center";
 import styled from "styled-components";
 import Button from "./Button";
 import ButtonLink from "./ButtonLink";
 import Cart from "./icons/Cart";
+import { CartContext } from "./CartContext";
 const Bg = styled.div`
   background-color: #222;
   color: white;
@@ -37,6 +38,10 @@ const ButtonWrapper = styled.div`
   margin-top: 20px;
 `;
 const Featured = ({ featuredproduct, id }) => {
+  const { addProduct } = useContext(CartContext);
+  function addFeaturedToCart() {
+    addProduct(id);
+  }
   return (
     <Bg>
       <Center>
@@ -54,7 +59,12 @@ const Featured = ({ featuredproduct, id }) => {
                 >
                   Read more
                 </ButtonLink>
-                <ButtonLink href={""} size="L" white>
+                <ButtonLink
+                  onClick={addFeaturedToCart}
+                  href={""}
+                  size="L"
+                  white
+                >
                   <Cart />
                   Add to Cart
                 </ButtonLink>
