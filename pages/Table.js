@@ -7,11 +7,12 @@ const StyledTable = styled.table`
     text-align: left;
     text-transform: uppercase;
     color: #ccc;
-    font-weight: 600;
+    font-weight: bold;
     font-size: 0.7rem;
   }
   td {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: 600;
   }
 `;
 const Table = (props) => {

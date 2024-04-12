@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { CartContext } from "./components/CartContext";
 import axios from "axios";
 import Table from "./Table";
+import Input from "./components/Input";
 const ColumnsWrapper = styled.div`
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -39,7 +40,18 @@ const QuantityLabel = styled.span`
   padding: 0 3px;
 `;
 
+const CityHolder = styled.div`
+  display: flex;
+  gap: 5px;
+`;
 export default function CartPage() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [city, setCity] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [streetAddress, setStreetAddress] = useState("");
+  const [country, setCountry] = useState("");
+
   const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -56,12 +68,11 @@ export default function CartPage() {
   function LessOfThisProduct(id) {
     removeProduct(id);
   }
-  let total = 0;
+  let total = 0; // Ensure total is initialized as a number
   for (const productId of cartProducts) {
-    const price = products.find((p) => p.id === productId)?.Price || 0;
-    console.log(price);
+    const price = +products.find((p) => p.id === productId)?.Price || 0;
+    console.log(total);
     total = total + price;
-    `Total==${"ewf" + total}`;
   }
   return (
     <>
@@ -69,8 +80,9 @@ export default function CartPage() {
       <Center>
         <ColumnsWrapper>
           <Box>
-            {!cartProducts?.length && <div>your Cart is Empty</div>}
             <h2>Cart</h2>
+            {!cartProducts?.length && <div>your Cart is Empty</div>}
+
             {cartProducts.length > 0 && (
               <Table>
                 <thead>
@@ -114,7 +126,7 @@ export default function CartPage() {
                   <tr>
                     <td></td>
                     <td></td>
-                    <td>{total}</td>
+                    <td>Rs {total}</td>
                   </tr>
                 </tbody>
               </Table>
@@ -125,11 +137,60 @@ export default function CartPage() {
             <Box>
               {" "}
               <h2>Order Information</h2>
-              <input type="text" placeholder="Address 1" />
-              <input type="text" placeholder="Address 2" />
-              <Button black block>
-                Continue to Payment
-              </Button>
+              <form method="post" action="/api/checkout">
+                <Input
+                  type="text"
+                  placeholder="Name"
+                  value={name}
+                  onChange={(ev) => setName(ev.target.value)}
+                  name="name"
+                />
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(ev) => setEmail(ev.target.value)}
+                  name="email"
+                />
+                <CityHolder>
+                  <Input
+                    type="text"
+                    placeholder="City"
+                    value={city}
+                    onChange={(ev) => setCity(ev.target.value)}
+                    name="city"
+                  />
+                  <Input
+                    type="number"
+                    placeholder="Postal Code"
+                    value={postalCode}
+                    onChange={(ev) => setPostalCode(ev.target.value)}
+                    name="postalCode"
+                  />
+                </CityHolder>
+                <Input
+                  type="text"
+                  placeholder="Street Address"
+                  value={streetAddress}
+                  onChange={(ev) => setStreetAddress(ev.target.value)}
+                  name="streetAddress"
+                />
+                <Input
+                  type="text"
+                  placeholder="Country"
+                  value={country}
+                  onChange={(ev) => setCountry(ev.target.value)}
+                  name="country"
+                />
+                <input
+                  type="hidden"
+                  name="products"
+                  value={cartProducts.join(",")}
+                />
+                <Button black block type="submit">
+                  Continue to Payment
+                </Button>
+              </form>
             </Box>
           )}
         </ColumnsWrapper>
