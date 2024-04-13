@@ -7,6 +7,7 @@ import { CartContext } from "./components/CartContext";
 import axios from "axios";
 import Table from "./Table";
 import Input from "./components/Input";
+import { Title } from "./components/Featured";
 const ColumnsWrapper = styled.div`
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -51,8 +52,10 @@ export default function CartPage() {
   const [postalCode, setPostalCode] = useState("");
   const [streetAddress, setStreetAddress] = useState("");
   const [country, setCountry] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
 
-  const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
+  const { cartProducts, addProduct, removeProduct, clearCart } =
+    useContext(CartContext);
   const [products, setProducts] = useState([]);
   useEffect(() => {
     if (cartProducts.length > 0) {
@@ -62,6 +65,15 @@ export default function CartPage() {
     }
   }, [cartProducts]);
 
+  useEffect(() => {
+    // if (typeof window !== "undefined") {
+    //   return;
+    // }
+    if (window?.location.href.includes("success")) {
+      setIsSuccess(true);
+      clearCart();
+    }
+  }, []);
   function moreOfThisProduct(id) {
     addProduct(id);
   }
@@ -71,7 +83,7 @@ export default function CartPage() {
   let total = 0; // Ensure total is initialized as a number
   for (const productId of cartProducts) {
     const price = +products.find((p) => p.id === productId)?.Price || 0;
-    console.log(total);
+
     total = total + price;
   }
 
@@ -90,7 +102,7 @@ export default function CartPage() {
     }
   }
 
-  if (window.location.href.includes("success")) {
+  if (isSuccess) {
     return (
       <>
         <Header />
@@ -104,6 +116,7 @@ export default function CartPage() {
         </Center>
       </>
     );
+  } else {
   }
   return (
     <>

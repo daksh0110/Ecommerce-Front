@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import styled, { css } from "styled-components";
 const PrimartColor = "#5542f6";

@@ -7,6 +7,7 @@ import {
   doc,
   getDoc,
   addDoc,
+  serverTimestamp,
 } from "firebase/firestore";
 import Stripe from "stripe";
 
@@ -64,6 +65,7 @@ export default async function handler(req, res) {
     streetAddress: streetAddress,
     country: country,
     products: { line_items },
+    createdAt: serverTimestamp(),
     paid: false,
   });
 

@@ -11,7 +11,7 @@ const Bg = styled.div`
   color: white;
   padding: 50px 0;
 `;
-const Title = styled.h1`
+export const Title = styled.h1`
   margin: 0;
   font-size: 3rem;
   font-weight: normal;
