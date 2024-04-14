@@ -103,6 +103,7 @@ export default function CartPage() {
   }
 
   if (isSuccess) {
+    clearCart();
     return (
       <>
         <Header />
@@ -116,8 +117,8 @@ export default function CartPage() {
         </Center>
       </>
     );
-  } else {
   }
+
   return (
     <>
       <Header />

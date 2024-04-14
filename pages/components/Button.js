@@ -4,13 +4,14 @@ import styled, { css } from "styled-components";
 const PrimartColor = "#5542f6";
 export const ButtonStyle = css`
   border: 0;
-
+  padding: 5px 15px;
   border-radius: 5px;
   cursor: pointer;
   display: inline-flex;
+  align-items: center;
   text-decoration: none;
-  font-weight: bold;
-  font-family: "Poppins", "sans-serif";
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
   svg {
     height: 20px;
     margin-right: 5px;
@@ -20,7 +21,7 @@ export const ButtonStyle = css`
     css`
       display: block;
       width: 100%;
-      padding: 5px;
+      padding: 6px;
     `}
   ${(props) =>
     props.primary &&

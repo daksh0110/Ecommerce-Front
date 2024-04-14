@@ -32,7 +32,7 @@ const Header = () => {
           <Logo href={"/"}> Ecommerce</Logo>
           <StyledNav>
             <NavLink href={"/"}>Home</NavLink>
-            <NavLink href={"/"}>All products</NavLink>
+            <NavLink href={"/products"}>All products</NavLink>
             <NavLink href={"/"}>Categories</NavLink>
             <NavLink href={"/"}>Account</NavLink>
             <NavLink href={"/cart"}>Cart({cartProducts.length})</NavLink>
