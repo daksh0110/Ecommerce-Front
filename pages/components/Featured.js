@@ -13,18 +13,38 @@ const Bg = styled.div`
 `;
 const Title = styled.h1`
   margin: 0;
-  font-size: 3rem;
+  font-size: 1%.5rem;
   font-weight: normal;
+  @media screen and (min-width: 768px) {
+    font-size: 3rem;
+  }
 `;
 const Disc = styled.p`
   color: #aaa;
   font-size: 0.8rem;
 `;
-const Wrapper = styled.div`
+const ColumnWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1fr;
+  div:nth-child(1) {
+    order: 2;
+  }
+
   img {
     max-width: 100%;
+    max-height: 200px;
+    display: block;
+    margin: 0 auto;
+  }
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1.1fr 0.9fr;
+    div:nth-child(1) {
+      order: 0;
+    }
+
+    img {
+      max-width: 100%;
+    }
   }
 `;
 const Column = styled.div`
@@ -45,7 +65,7 @@ const Featured = ({ featuredproduct, id }) => {
   return (
     <Bg>
       <Center>
-        <Wrapper>
+        <ColumnWrapper>
           <Column>
             <div>
               <Title>{featuredproduct.Title}</Title>
@@ -74,11 +94,11 @@ const Featured = ({ featuredproduct, id }) => {
           <div className="">
             <img
               className=""
-              src="https://freepngimg.com/thumb/macbook/28662-2-macbook-transparent-background.png"
+              src="https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1663415375/Croma%20Assets/Computers%20Peripherals/Laptop/Images/245226_0_miryw4.png?tr=w-640"
               alt="Elegant and Attractive Macbook Transparent Images"
             />
           </div>
-        </Wrapper>
+        </ColumnWrapper>
       </Center>
     </Bg>
   );

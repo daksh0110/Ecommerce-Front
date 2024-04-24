@@ -10,9 +10,12 @@ import Input from "./components/Input";
 import { Title } from "./components/Featured";
 const ColumnsWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1fr;
   gap: 40px;
   margin-top: 40px;
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
 `;
 const Box = styled.div`
   background-color: #fff;

@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 const PrimartColor = "#5542f6";
 export const ButtonStyle = css`
   border: 0;
-  padding: 5px 15px;
+  padding: 5px 8px;
   border-radius: 5px;
   cursor: pointer;
   display: inline-flex;
@@ -23,6 +23,7 @@ export const ButtonStyle = css`
       width: 100%;
       padding: 6px;
     `}
+
   ${(props) =>
     props.primary &&
     !props.outline &&
