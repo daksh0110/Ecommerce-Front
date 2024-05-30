@@ -11,6 +11,7 @@ import {
 import { db } from "./components/lib/dbconfig";
 import NewProduct from "./components/NewProduct";
 export default function Home({ featuredproduct, id, product }) {
+  console.log(featuredproduct);
   return (
     <div>
       <Header />
@@ -21,7 +22,7 @@ export default function Home({ featuredproduct, id, product }) {
 }
 
 export async function getServerSideProps() {
-  const Featuredid = "CpJlemFbrDa6MFNB1kKH";
+  const Featuredid = "7fDFjCh9qOxoRvbpYo3W";
   const docRef = doc(db, "Products", Featuredid);
   const docSnap = await getDoc(docRef);
   const featuredproduct = docSnap.data();
