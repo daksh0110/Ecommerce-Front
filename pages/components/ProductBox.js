@@ -4,6 +4,7 @@ import Button from "./Button";
 import Cart from "./icons/Cart";
 import Link from "next/link";
 import { CartContext } from "./CartContext";
+import Image from "next/image";
 const ProductWrapper = styled.div``;
 
 const WhiteBox = styled(Link)`
