@@ -6,6 +6,9 @@ import { CartContext } from "./CartContext";
 import Bars from "./icons/Bars";
 const StyledHeader = styled.header`
   background-color: #222;
+  position: sticky;
+  top: 0px;
+  z-index: 10px;
 `;
 const Logo = styled(Link)`
   color: #fff;

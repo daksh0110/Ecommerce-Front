@@ -8,7 +8,7 @@ import { collection, getDocs, where, query, limit } from "firebase/firestore";
 import ProductsGrid from "./components/ProductsGrid";
 import styled from "styled-components";
 import Link from "next/link";
-
+import { RevealWrapper } from "next-reveal";
 const CategoryGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -62,11 +62,17 @@ const Categories = ({ mainCategories, categoryProduct }) => {
             </CategoryTitle>
             <CategoryGrid>
               {categoryProduct[mainCategory.id].map((cat, index1) => (
-                <ProductBox key={cat.id} product={cat} />
+                <RevealWrapper key={cat.id} delay={index1 * 50}>
+                  <ProductBox product={cat} />
+                </RevealWrapper>
               ))}
-              <ShowAllSquare href={"/category/" + mainCategory.id}>
-                Show all &rarr;
-              </ShowAllSquare>
+              <RevealWrapper
+                delay={categoryProduct[mainCategory.id].length * 50}
+              >
+                <ShowAllSquare href={"/category/" + mainCategory.id}>
+                  Show all &rarr;
+                </ShowAllSquare>
+              </RevealWrapper>
             </CategoryGrid>
           </CategoryWrapper>
         ))}

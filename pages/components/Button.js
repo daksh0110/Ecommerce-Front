@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import styled, { css } from "styled-components";
-const PrimartColor = "#5542f6";
+export const PrimartColor = "#5542f6";
 export const ButtonStyle = css`
   border: 0;
   padding: 5px 8px;
@@ -12,6 +12,7 @@ export const ButtonStyle = css`
   text-decoration: none;
   font-weight: 500;
   font-family: "Poppins", sans-serif;
+  font-size: 16px;
   svg {
     height: 20px;
     margin-right: 5px;

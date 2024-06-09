@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import Button from "./Button";
+import Button, { ButtonStyle } from "./Button";
 import Cart from "./icons/Cart";
 import Link from "next/link";
 import { CartContext } from "./CartContext";
 import Image from "next/image";
-const ProductWrapper = styled.div``;
+import FlyingButton from "./FlyingButton";
 
+const ProductWrapper = styled.div``;
+const PrimartColor = "#5542f6";
 const WhiteBox = styled(Link)`
   background-color: white;
   padding: 20px;
@@ -54,6 +56,7 @@ const Price = styled.div`
     font-weight: bold;
   }
 `;
+
 const ProductBox = ({ product }) => {
   const url = "/product/" + product.id;
   const { addProduct } = useContext(CartContext);
@@ -68,9 +71,9 @@ const ProductBox = ({ product }) => {
         <PriceRow>
           <Price>Rs {product.Price}</Price>
         </PriceRow>
-        <Button primary block outline onClick={() => addProduct(product.id)}>
-          Add to cart
-        </Button>
+        <FlyingButton id={product.id} src={product.Images[0]}>
+          Add To Cart
+        </FlyingButton>
       </ProductInfoBox>
     </ProductWrapper>
   );

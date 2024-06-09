@@ -6,6 +6,8 @@ import Button from "./Button";
 import ButtonLink from "./ButtonLink";
 import Cart from "./icons/Cart";
 import { CartContext } from "./CartContext";
+import FlyingButton from "./FlyingButton";
+import { RevealWrapper } from "next-reveal";
 const Bg = styled.div`
   background-color: #222;
   color: white;
@@ -30,7 +32,7 @@ const ColumnWrapper = styled.div`
     order: 2;
   }
 
-  img {
+  img.main {
     max-width: 100%;
     max-height: 200px;
     display: block;
@@ -68,36 +70,36 @@ const Featured = ({ featuredproduct, id }) => {
         <ColumnWrapper>
           <Column>
             <div>
-              <Title>{featuredproduct.Title}</Title>
-              <Disc>{featuredproduct.Description}</Disc>
-              <ButtonWrapper>
-                <ButtonLink
-                  href={"/products/" + id}
-                  outline={1}
-                  white={1}
-                  size="L"
-                >
-                  Read more
-                </ButtonLink>
-                <ButtonLink
-                  onClick={addFeaturedToCart}
-                  href={""}
-                  size="L"
-                  white
-                >
-                  <Cart />
-                  Add to Cart
-                </ButtonLink>
-              </ButtonWrapper>
+              <RevealWrapper origin="left" delay={0}>
+                <Title>{featuredproduct.Title}</Title>
+                <Disc>{featuredproduct.Description}</Disc>
+                <ButtonWrapper>
+                  <ButtonLink
+                    href={"/products/" + id}
+                    outline={1}
+                    white={1}
+                    size="L"
+                  >
+                    Read more
+                  </ButtonLink>
+
+                  <FlyingButton white id={id} src={featuredproduct.Images[0]}>
+                    <Cart />
+                    Add to Cart
+                  </FlyingButton>
+                </ButtonWrapper>
+              </RevealWrapper>
             </div>
           </Column>
-          <div className="">
-            <img
-              className=""
-              src="https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1663415375/Croma%20Assets/Computers%20Peripherals/Laptop/Images/245226_0_miryw4.png?tr=w-640"
-              alt="Elegant and Attractive Macbook Transparent Images"
-            />
-          </div>
+          <Column>
+            <RevealWrapper delay={0}>
+              <img
+                className="main"
+                src="https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1663415375/Croma%20Assets/Computers%20Peripherals/Laptop/Images/245226_0_miryw4.png?tr=w-640"
+                alt="Elegant and Attractive Macbook Transparent Images"
+              />
+            </RevealWrapper>
+          </Column>
         </ColumnWrapper>
       </Center>
     </Bg>

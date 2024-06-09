@@ -10,6 +10,7 @@ import Button from "../components/Button";
 import Cart from "../components/icons/Cart";
 import { useContext } from "react";
 import { CartContext } from "../components/CartContext";
+import FlyingButton from "../components/FlyingButton";
 const ColWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -45,11 +46,15 @@ export default function ProductPage({ product, id }) {
             <PriceRow>
               <Price>Rs {product.Price}</Price>
               <div>
-                <Button primary onClick={() => addProduct(id)}>
-                  {" "}
+                <FlyingButton
+                  main
+                  primary
+                  id={product.id}
+                  src={product.Images[0]}
+                >
                   <Cart />
                   Add to Cart
-                </Button>
+                </FlyingButton>
               </div>
             </PriceRow>
           </div>
