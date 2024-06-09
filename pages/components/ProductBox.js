@@ -7,7 +7,13 @@ import { CartContext } from "./CartContext";
 import Image from "next/image";
 import FlyingButton from "./FlyingButton";
 
-const ProductWrapper = styled.div``;
+const ProductWrapper = styled.div`
+  button {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+`;
 const PrimartColor = "#5542f6";
 const WhiteBox = styled(Link)`
   background-color: white;

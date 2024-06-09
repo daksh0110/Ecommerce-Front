@@ -83,7 +83,11 @@ const Featured = ({ featuredproduct, id }) => {
                     Read more
                   </ButtonLink>
 
-                  <FlyingButton white id={id} src={featuredproduct.Images[0]}>
+                  <FlyingButton
+                    white={1}
+                    id={id}
+                    src={featuredproduct.Images[0]}
+                  >
                     <Cart />
                     Add to Cart
                   </FlyingButton>
