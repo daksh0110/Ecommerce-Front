@@ -7,7 +7,7 @@ import Bars from "./icons/Bars";
 import SearchIcon from "./icons/SearchIcon";
 const StyledHeader = styled.header`
   background-color: #222;
-  position: sticky;
+  /* position: sticky; */
   top: 0px;
   z-index: 10px;
 `;
@@ -99,7 +99,7 @@ const Header = () => {
             <NavLink href={"/"}>Home</NavLink>
             <NavLink href={"/products"}>All products</NavLink>
             <NavLink href={"/Categories"}>Categories</NavLink>
-            <NavLink href={"/"}>Account</NavLink>
+            <NavLink href={"/account"}>Account</NavLink>
             <NavLink href={"/cart"}>Cart({cartProducts.length})</NavLink>
           </StyledNav>
           <SideIcons>

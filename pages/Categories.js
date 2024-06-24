@@ -9,6 +9,9 @@ import ProductsGrid from "./components/ProductsGrid";
 import styled from "styled-components";
 import Link from "next/link";
 import { RevealWrapper } from "next-reveal";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]";
+
 const CategoryGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -45,8 +48,12 @@ const ShowAllSquare = styled(Link)`
   color: #555;
   text-decoration: none;
 `;
-const Categories = ({ mainCategories, categoryProduct }) => {
-  console.log({ categoryProduct });
+const Categories = ({ mainCategories, categoryProduct, wishedProducts }) => {
+  const wishedProductIds =
+    wishedProducts && wishedProducts.length > 0
+      ? Object.values(wishedProducts[0])
+      : [];
+  console.log(wishedProductIds);
   return (
     <>
       <Header />
@@ -63,7 +70,10 @@ const Categories = ({ mainCategories, categoryProduct }) => {
             <CategoryGrid>
               {categoryProduct[mainCategory.id].map((cat, index1) => (
                 <RevealWrapper key={cat.id} delay={index1 * 50}>
-                  <ProductBox product={cat} />
+                  <ProductBox
+                    product={cat}
+                    wished={wishedProductIds.includes(cat.id)}
+                  />
                 </RevealWrapper>
               ))}
               <RevealWrapper
@@ -83,7 +93,7 @@ const Categories = ({ mainCategories, categoryProduct }) => {
 
 export default Categories;
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
   const mainCategories = [];
   const categoryProduct = {};
   const childCategory = [];
@@ -129,14 +139,27 @@ export async function getServerSideProps() {
     }
 
     categoryProduct[main.id] = Products;
-
-    console.log(categoryProduct);
+  }
+  let wishedProducts = [];
+  const session = await getServerSession(ctx.req, ctx.res, authOptions);
+  const user = session?.user;
+  if (user) {
+    const UserRefs = collection(db, "WishList");
+    const q = query(UserRefs, where("userEmail", "==", user.email));
+    const wishListDocument = await getDocs(q);
+    wishListDocument.forEach((doc) => {
+      wishedProducts.push({ ...doc.data().products });
+    });
+    console.log("wishedproducts===" + wishedProducts);
+  } else {
+    wishedProducts = [];
   }
 
   return {
     props: {
       mainCategories: JSON.parse(JSON.stringify(mainCategories)),
       categoryProduct: JSON.parse(JSON.stringify(categoryProduct)),
+      wishedProducts: wishedProducts,
     },
   };
 }

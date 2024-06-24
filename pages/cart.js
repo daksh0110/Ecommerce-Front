@@ -70,13 +70,19 @@ export default function CartPage() {
   }, [cartProducts]);
 
   useEffect(() => {
-    // if (typeof window !== "undefined") {
-    //   return;
-    // }
     if (window?.location.href.includes("success")) {
       setIsSuccess(true);
       clearCart();
     }
+
+    axios.get("/api/address").then((response) => {
+      setName(response.data.name);
+      setEmail(response.data.email);
+      setCity(response.data.city);
+      setPostalCode(response.data.postalCode);
+      setStreetAddress(response.data.streetAddress);
+      setCountry(response.data.country);
+    });
   }, []);
   function moreOfThisProduct(id) {
     addProduct(id);
