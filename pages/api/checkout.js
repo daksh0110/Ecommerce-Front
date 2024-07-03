@@ -9,7 +9,9 @@ import {
   addDoc,
   serverTimestamp,
 } from "firebase/firestore";
+import { getServerSession } from "next-auth";
 import Stripe from "stripe";
+import { authOptions } from "./auth/[...nextauth]";
 
 const stripe = new Stripe(process.env.STRIPE_SK);
 export default async function handler(req, res) {
@@ -56,7 +58,8 @@ export default async function handler(req, res) {
       });
     }
   });
-
+  const session = await getServerSession(req, res, authOptions);
+  const user = session?.user;
   const docRef = await addDoc(collection(db, "Orders"), {
     name: name,
     email: email,
@@ -67,9 +70,10 @@ export default async function handler(req, res) {
     products: { line_items },
     createdAt: serverTimestamp(),
     paid: false,
+    userEmail: user?.email,
   });
 
-  const session = await stripe.checkout.sessions.create({
+  const stripeSession = await stripe.checkout.sessions.create({
     line_items,
     mode: "payment",
     customer_email: email,
@@ -82,6 +86,6 @@ export default async function handler(req, res) {
   });
 
   res.json({
-    url: session.url,
+    url: stripeSession.url,
   });
 }
