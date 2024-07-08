@@ -73,6 +73,18 @@ export default async function handler(req, res) {
     userEmail: user?.email,
   });
 
+  async function fetchShippingFee() {
+    const q = query(
+      collection(db, "Settings"),
+      where("name", "==", "shippingFee")
+    );
+    const querySnapshot = await getDocs(q);
+    const documentRef = querySnapshot?.docs[0];
+    return documentRef.data().value;
+  }
+
+  let shippingFee = await fetchShippingFee();
+  console.log(shippingFee);
   const stripeSession = await stripe.checkout.sessions.create({
     line_items,
     mode: "payment",
@@ -82,7 +94,17 @@ export default async function handler(req, res) {
     },
     success_url: process.env.PUBLIC_URL + "/cart?success=1",
     cancel_url: process.env.PUBLIC_URL + "/cart?cancel=1",
-    metadata: { orderid: docRef.id.toString(), test: "ok" },
+    metadata: { orderid: docRef.id.toString() },
+    allow_promotion_codes: true,
+    shipping_options: [
+      {
+        shipping_rate_data: {
+          display_name: "shipping fee",
+          type: "fixed_amount",
+          fixed_amount: { amount: shippingFee * 100, currency: "INR" },
+        },
+      },
+    ],
   });
 
   res.json({

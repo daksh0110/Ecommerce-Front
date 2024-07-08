@@ -28,7 +28,13 @@ export default function Home({ featuredproduct, id, product, wishedProducts }) {
 }
 
 export async function getServerSideProps(ctx) {
-  const Featuredid = "7fDFjCh9qOxoRvbpYo3W";
+  const q = query(
+    collection(db, "Settings"),
+    where("name", "==", "featuredProductId")
+  );
+  const FeaturedProductIds = await getDocs(q);
+  const documentRef = FeaturedProductIds?.docs[0];
+  const Featuredid = documentRef.data().value;
   const docRef = doc(db, "Products", Featuredid);
   const docSnap = await getDoc(docRef);
   const featuredproduct = docSnap.data();

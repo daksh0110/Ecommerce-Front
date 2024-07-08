@@ -14,6 +14,25 @@ const ColumnsWrapper = styled.div`
   grid-template-columns: 1fr;
   gap: 40px;
   margin-top: 40px;
+  margin-bottom: 40px;
+  table thead tr th:nth-child(3),
+  table tbody tr td:nth-child(3),
+  table tbody tr.subtotal td:nth-child(2) {
+    text-align: right;
+  }
+  table tr.subtotal td {
+    padding: 15px 0;
+  }
+  table tbody tr.subtotal td:nth-child(2) {
+    font-size: 1.4rem;
+  }
+  table tbody tr.total td:nth-child(2) {
+    text-align: right;
+  }
+  tr.total td {
+    font-size: 1.6rem;
+    font-weight: bolder;
+  }
   @media screen and (min-width: 768px) {
     grid-template-columns: 1.2fr 0.8fr;
   }
@@ -57,6 +76,7 @@ export default function CartPage() {
   const [streetAddress, setStreetAddress] = useState("");
   const [country, setCountry] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [shippingFee, setShippingFee] = useState(null);
 
   const { cartProducts, addProduct, removeProduct, clearCart } =
     useContext(CartContext);
@@ -70,11 +90,17 @@ export default function CartPage() {
   }, [cartProducts]);
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    console.log("Current URL:", window.location.href);
     if (window?.location.href.includes("success")) {
       setIsSuccess(true);
+      console.log("Success URL detected");
       clearCart();
     }
-
+  }, []);
+  useEffect(() => {
     axios.get("/api/address").then((response) => {
       setName(response.data.name);
       setEmail(response.data.email);
@@ -83,18 +109,23 @@ export default function CartPage() {
       setStreetAddress(response.data.streetAddress);
       setCountry(response.data.country);
     });
+
+    axios.get("/api/settings?name=shippingFee").then((response) => {
+      setShippingFee(response.data.value);
+    });
   }, []);
+
   function moreOfThisProduct(id) {
     addProduct(id);
   }
   function LessOfThisProduct(id) {
     removeProduct(id);
   }
-  let total = 0; // Ensure total is initialized as a number
+  let productsTotal = 0;
   for (const productId of cartProducts) {
     const price = +products.find((p) => p.id === productId)?.Price || 0;
 
-    total = total + price;
+    productsTotal = productsTotal + price;
   }
 
   async function goToPayment() {
@@ -180,10 +211,17 @@ export default function CartPage() {
                         </td>
                       </tr>
                     ))}
-                    <tr>
-                      <td></td>
-                      <td>Total</td>
-                      <td>Rs {total}</td>
+                    <tr className="subtotal">
+                      <td colSpan={2}>Products</td>
+                      <td>Rs {productsTotal}</td>
+                    </tr>
+                    <tr className="subtotal">
+                      <td colSpan={2}>Shipping</td>
+                      <td>Rs {shippingFee}</td>
+                    </tr>
+                    <tr className="total">
+                      <td colSpan={2}>Total</td>
+                      <td>Rs {Number(productsTotal) + Number(shippingFee)}</td>
                     </tr>
                   </tbody>
                 </Table>

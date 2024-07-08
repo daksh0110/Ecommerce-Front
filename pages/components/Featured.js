@@ -99,8 +99,8 @@ const Featured = ({ featuredproduct, id }) => {
             <RevealWrapper delay={0}>
               <img
                 className="main"
-                src="https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1663415375/Croma%20Assets/Computers%20Peripherals/Laptop/Images/245226_0_miryw4.png?tr=w-640"
-                alt="Elegant and Attractive Macbook Transparent Images"
+                src={featuredproduct.Images[0]}
+                alt="Featured Product"
               />
             </RevealWrapper>
           </Column>
