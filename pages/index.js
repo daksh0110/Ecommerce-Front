@@ -14,9 +14,10 @@ import {
 } from "firebase/firestore";
 import { db } from "../components/lib/dbconfig";
 import NewProduct from "../components/NewProduct";
-import { getServerSession } from "next-auth";
+
 import { authOptions } from "./api/auth/[...nextauth]";
-import { userAgentFromString } from "next/server";
+import { getServerSession } from "next-auth/react";
+
 export default function Home({ featuredproduct, id, product, wishedProducts }) {
   return (
     <div>
