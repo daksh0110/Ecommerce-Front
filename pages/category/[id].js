@@ -1,6 +1,7 @@
-import { Center } from "../components/Center";
-import Header from "../components/Header";
-import Title from "../components/Title";
+import { Center } from "../../components/Center";
+import Header from "../../components/Header";
+import Title from "../../components/Title";
+
 import {
   doc,
   getDoc,
@@ -9,14 +10,14 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { db } from "../components/lib/dbconfig";
-import ProductBox from "../components/ProductBox";
-import ProductsGrid from "../components/ProductsGrid";
+import { db } from "../../components/lib/dbconfig";
+import ProductBox from "../../components/ProductBox";
+import ProductsGrid from "../../components/ProductsGrid";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
-import Spinner from "../components/Spinner";
+import Spinner from "../../components/Spinner";
 const CategoryHeader = styled.div`
   display: flex;
   align-items: center;

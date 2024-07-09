@@ -1,5 +1,5 @@
-import Featured from "./components/Featured";
-import Header from "./components/Header";
+import Featured from "../components/Featured";
+import Header from "../components/Header";
 
 import {
   doc,
@@ -12,8 +12,8 @@ import {
   where,
   updateDoc,
 } from "firebase/firestore";
-import { db } from "./components/lib/dbconfig";
-import NewProduct from "./components/NewProduct";
+import { db } from "../components/lib/dbconfig";
+import NewProduct from "../components/NewProduct";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { userAgentFromString } from "next/server";

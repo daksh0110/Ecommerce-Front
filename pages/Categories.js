@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "./components/Header";
-import Title from "./components/Title";
-import { Center } from "./components/Center";
-import { db } from "./components/lib/dbconfig";
-import ProductBox from "./components/ProductBox";
+import Header from "../components/Header";
+import Title from "../components/Title";
+import { Center } from "../components/Center";
+import { db } from "../components/lib/dbconfig";
+import ProductBox from "../components/ProductBox";
 import { collection, getDocs, where, query, limit } from "firebase/firestore";
-import ProductsGrid from "./components/ProductsGrid";
+import ProductsGrid from "../components/ProductsGrid";
 import styled from "styled-components";
 import Link from "next/link";
 import { RevealWrapper } from "next-reveal";

@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { CartContextProvider } from "./components/CartContext";
+import { CartContextProvider } from "../components/CartContext";
 import { SessionProvider } from "next-auth/react";
 import GlobalStyles from "../styles/globalStyles";
 export default function App({

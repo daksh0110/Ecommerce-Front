@@ -1,4 +1,4 @@
-import { db } from "../components/lib/dbconfig";
+import { db } from "../../components/lib/dbconfig";
 import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
 export default async function handle(req, res) {
   const { categories, sort, phrase, ...filters } = req.query;

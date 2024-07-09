@@ -5,6 +5,7 @@ import { Center } from "./Center";
 import { CartContext } from "./CartContext";
 import Bars from "./icons/Bars";
 import SearchIcon from "./icons/SearchIcon";
+
 const StyledHeader = styled.header`
   background-color: #222;
   /* position: sticky; */

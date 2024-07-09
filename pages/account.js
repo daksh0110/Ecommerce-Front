@@ -1,19 +1,19 @@
 import { signIn, signOut, useSession } from "next-auth/react";
-import { Center } from "./components/Center";
-import Header from "./components/Header";
-import Title from "./components/Title";
-import Button from "./components/Button";
+import { Center } from "../components/Center";
+import Header from "../components/Header";
+import Title from "../components/Title";
+import Button from "../components/Button";
 import styled from "styled-components";
-import WhiteBox from "./components/WhiteBox";
+import WhiteBox from "../components/WhiteBox";
 import { RevealWrapper } from "next-reveal";
-import Input from "./components/Input";
+import Input from "../components/Input";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Spinner from "./components/Spinner";
-import ProductBox from "./components/ProductBox";
-import Tabs from "./components/Tabs";
+import Spinner from "../components/Spinner";
+import ProductBox from "../components/ProductBox";
+import Tabs from "../components/Tabs";
+import SingleOrder from "../components/SingleOrder";
 
-import SingleOrder from "./components/SingleOrder";
 const ColWrapper = styled.div`
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;

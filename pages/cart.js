@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import Button from "./components/Button";
-import { Center } from "./components/Center";
-import Header from "./components/Header";
+import Button from "../components/Button";
+import { Center } from "../components/Center";
+import Header from "../components/Header";
 import styled from "styled-components";
-import { CartContext } from "./components/CartContext";
+import { CartContext } from "../components/CartContext";
 import axios from "axios";
 import Table from "./Table";
-import Input from "./components/Input";
-import { Title } from "./components/Featured";
+import Input from "../components/Input";
+import { Title } from "../components/Featured";
 import { RevealWrapper } from "next-reveal";
 const ColumnsWrapper = styled.div`
   display: grid;

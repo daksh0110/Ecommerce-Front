@@ -13,7 +13,7 @@ import {
   arrayUnion,
   arrayRemove,
 } from "firebase/firestore";
-import { db } from "../components/lib/dbconfig";
+import { db } from "../../components/lib/dbconfig";
 
 export default async function handler(req, res) {
   const method = req.method;

@@ -1,10 +1,10 @@
 import React from "react";
-import Header from "./components/Header";
+import Header from "../components/Header";
 import styled from "styled-components";
-import { Center } from "./components/Center";
+import { Center } from "../components/Center";
 import { collection, getDocs, query, orderBy, where } from "firebase/firestore";
-import { db } from "./components/lib/dbconfig";
-import ProductsGrid from "./components/ProductsGrid";
+import { db } from "../components/lib/dbconfig";
+import ProductsGrid from "../components/ProductsGrid";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 

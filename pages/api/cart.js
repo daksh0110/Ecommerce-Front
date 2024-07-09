@@ -1,5 +1,5 @@
 import axios from "axios";
-import { db } from "../components/lib/dbconfig";
+import { db } from "../../components/lib/dbconfig";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 export default async function handler(req, res) {

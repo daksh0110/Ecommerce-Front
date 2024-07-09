@@ -1,4 +1,4 @@
-import { db } from "../components/lib/dbconfig";
+import { db } from "../../components/lib/dbconfig";
 import Stripe from "stripe";
 import { buffer } from "micro";
 import { updateDoc, doc } from "firebase/firestore";

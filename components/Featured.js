@@ -8,6 +8,7 @@ import Cart from "./icons/Cart";
 import { CartContext } from "./CartContext";
 import FlyingButton from "./FlyingButton";
 import { RevealWrapper } from "next-reveal";
+
 const Bg = styled.div`
   background-color: #222;
   color: white;

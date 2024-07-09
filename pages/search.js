@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { Center } from "./components/Center";
-import Header from "./components/Header";
-import Input from "./components/Input";
+import { Center } from "../components/Center";
+import Header from "../components/Header";
+import Input from "../components/Input";
 import { useCallback, useEffect, useRef, useState } from "react";
-import ProductsGrid from "./components/ProductsGrid";
+import ProductsGrid from "../components/ProductsGrid";
 import axios from "axios";
 import { debounce } from "lodash";
-import Spinner from "./components/Spinner";
+import Spinner from "../components/Spinner";
 const SearchInput = styled(Input)`
   padding: 5px 10px;
   border-radius: 5px;

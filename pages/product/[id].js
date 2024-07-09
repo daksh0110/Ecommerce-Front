@@ -1,16 +1,16 @@
-import { Center } from "../components/Center";
-import Header from "../components/Header";
-import Title from "../components/Title";
+import { Center } from "../../components/Center";
+import Header from "../../components/Header";
+import Title from "../../components/Title";
 import { doc, getDoc, query } from "firebase/firestore";
-import { db } from "../components/lib/dbconfig";
+import { db } from "../../components/lib/dbconfig";
 import styled from "styled-components";
-import WhiteBox from "../components/WhiteBox";
-import ProductImages from "../components/ProductImages";
-import Button from "../components/Button";
-import Cart from "../components/icons/Cart";
+import WhiteBox from "../../components/WhiteBox";
+import ProductImages from "../../components/ProductImages";
+import Button from "../../components/Button";
+import Cart from "../../components/icons/Cart";
 import { useContext } from "react";
-import { CartContext } from "../components/CartContext";
-import FlyingButton from "../components/FlyingButton";
+import { CartContext } from "../../components/CartContext";
+import FlyingButton from "../../components/FlyingButton";
 const ColWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;

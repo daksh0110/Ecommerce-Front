@@ -1,4 +1,4 @@
-import { db } from "../components/lib/dbconfig";
+import { db } from "../../components/lib/dbconfig";
 import {
   collection,
   query,
@@ -11,7 +11,7 @@ import {
 } from "firebase/firestore";
 import { getServerSession } from "next-auth";
 import Stripe from "stripe";
-import { authOptions } from "./auth/[...nextauth]";
+import { authOptions } from "../api/auth/[...nextauth]";
 
 const stripe = new Stripe(process.env.STRIPE_SK);
 export default async function handler(req, res) {

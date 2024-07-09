@@ -1,6 +1,6 @@
 import nextAuth, { getServerSession } from "next-auth";
 
-import { db } from "../components/lib/dbconfig";
+import { db } from "../../components/lib/dbconfig";
 import {
   collection,
   query,
@@ -11,7 +11,7 @@ import {
   doc,
 } from "firebase/firestore";
 
-import { authOptions } from "./auth/[...nextauth]";
+import { authOptions } from "../api/auth/[...nextauth]";
 import { use } from "react";
 
 export default async function handler(req, res) {

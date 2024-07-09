@@ -14,7 +14,7 @@ import {
   arrayRemove,
 } from "firebase/firestore";
 
-import { db } from "../components/lib/dbconfig";
+import { db } from "../../components/lib/dbconfig";
 
 export default async function handle(req, res) {
   const Orders = [];
