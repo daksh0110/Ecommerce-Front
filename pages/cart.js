@@ -93,10 +93,9 @@ export default function CartPage() {
     if (typeof window === "undefined") {
       return;
     }
-    console.log("Current URL:", window.location.href);
-    if (window?.location.href.includes("success")) {
+
+    if (window.location.href.includes("success=1")) {
       setIsSuccess(true);
-      console.log("Success URL detected");
       clearCart();
     }
   }, []);
@@ -144,7 +143,6 @@ export default function CartPage() {
   }
 
   if (isSuccess) {
-    clearCart();
     return (
       <>
         <Header />
