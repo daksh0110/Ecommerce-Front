@@ -16,7 +16,7 @@ import { db } from "../components/lib/dbconfig";
 import NewProduct from "../components/NewProduct";
 
 import { authOptions } from "./api/auth/[...nextauth]";
-import { getServerSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 
 export default function Home({ featuredproduct, id, product, wishedProducts }) {
   return (
