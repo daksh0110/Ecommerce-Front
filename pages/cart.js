@@ -98,7 +98,7 @@ export default function CartPage() {
       setIsSuccess(true);
       clearCart();
     }
-  }, []);
+  }, [clearCart]);
   useEffect(() => {
     axios.get("/api/address").then((response) => {
       setName(response.data.name);

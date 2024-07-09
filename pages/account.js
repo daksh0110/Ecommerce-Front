@@ -120,6 +120,7 @@ export default function AccountPage() {
                         {orders.length > 0 &&
                           orders.map((o) => (
                             <SingleOrder
+                              key={o}
                               createdAt={o.createdAt}
                               {...o.products}
                               {...o}
