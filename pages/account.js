@@ -55,7 +55,7 @@ export default function AccountPage() {
 
   async function logIn() {
     await signIn("google", {
-      callbackUrl: process.env.NEXT_PUBLIC_URL,
+      callbackUrl: `${process.env.NEXT_PUBLIC_URL}/account`,
     });
   }
 
